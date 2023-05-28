@@ -103,7 +103,7 @@ public class GameScene extends JPanel implements KeyListener {
 
         remind=new JTextArea();
         Font font = new Font(Font.SANS_SERIF, Font.PLAIN, 10);
-        remind.setBounds(750, 0, + 150, 70);
+        remind.setBounds(820, 0, + 150, 70);
         remind.setEditable(false);
         remind.setLineWrap(true);
         remind.setWrapStyleWord(true);
@@ -142,7 +142,7 @@ public class GameScene extends JPanel implements KeyListener {
 
             seeInstructions = new JButton("הוראות המשחק");
             seeInstructions.setBounds(30, Button_Y, Button_WIDTH, Button_HEIGHT);
-            instructionsTextArea.setBounds(30, Button_Y + 50, Button_WIDTH + 100, 350);
+            instructionsTextArea.setBounds(30, Button_Y + 50, Button_WIDTH + 100, 400);
             instructionsTextArea.setEditable(false);
             instructionsTextArea.setLineWrap(true);
             instructionsTextArea.setWrapStyleWord(true);
@@ -163,29 +163,28 @@ public class GameScene extends JPanel implements KeyListener {
             });
             this.add(seeInstructions);
         }
-
     }
-    //    private void newGameButton(){
-//        newGameB=new JButton("דף הבית");
-//        newGameB.setBounds(Button_X, Button_Y, Button_WIDTH, Button_HEIGHT);
-//        newGameB.setVisible(true);
-//        newGameB.addActionListener(e -> {
-//            newGameB.setVisible(false);
-//
+//    private void HomeGage(){
+//        titleGame=new JButton("דף הבית");
+//        titleGame.setBounds(Button_X, Button_Y, Button_WIDTH, Button_HEIGHT);
+//        titleGame.setVisible(true);
+//        titleGame.addActionListener(e -> {
+//            titleGame.setVisible(false);
 //            page = HOME_PAGE;
+//            gameStarted = true;
+//            gameOver=false;
 //            startButton.setVisible(true);
 //            seeInstructions.setVisible(true);
 //            player.life = player.three;
-//            title.setText(" ❤️" + this.player.life);
 //            player.level = player.level1;
-//            title.setText(player.life + "❤️   " + " level " + player.level + "      " + "Time:  " + "00" + ":" + clock);
-//            counter = 3000;
 //            titleLost.setVisible(false);
 //            titleWin.setVisible(false);
-//            startTimerThread();
+//            clock=30;
+//
 //        });
-//        this.add(newGameB);
+//        this.add(titleGame);
 //    }
+
     private void startTimerThread() {
         new Thread(() -> {
             while (gameStarted) {
@@ -231,20 +230,22 @@ public class GameScene extends JPanel implements KeyListener {
                 title.setForeground(LEVEL_COLOR);
                 this.add(title);
                 int waitBeforeRevive = 0;
-                int whitBeforeNewGame = 2000;
                 while (!gameOver) {
                     while (true) {
                         if (player.level > 6) {
                             titleWin.setVisible(true);
                             gameOver = true;
                             title.setVisible(false);
-
+                            remind.setVisible(false);
+                            //HomeGage();
                             break;
                         }
                         if (player.life == 0) {
                             titleLost.setVisible(true);
                             gameOver = true;
                             title.setVisible(false);
+                           // HomeGage();
+
                             break;
                         }
                         if (player.life==3&&player.level>=3) {
